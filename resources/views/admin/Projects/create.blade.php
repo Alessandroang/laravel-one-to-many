@@ -18,7 +18,6 @@
                 </ul>
             </div>
         @endif
-
         <form action="{{ route('admin.projects.store') }}" method="POST" class="row g-3">
             @csrf <!-- Aggiunto il token CSRF -->
 
@@ -31,38 +30,49 @@
                 @enderror
             </div>
 
-
             <div class="col-3">
-                <label for="sale_date">Name</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
-
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
+                    value="{{ old('name') }}">
+                @error('name')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="col-3">
-                <label for="price">Slug</label>
-                <input type="text" name="slug" id="slug" class="form-control" value="{{ old('slug') }}">
-
+                <label for="slug">Slug</label>
+                <input type="text" name="slug" id="slug" class="form-control @error('slug') is-invalid @enderror"
+                    value="{{ old('slug') }}">
+                @error('slug')
+                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                @enderror
             </div>
 
-
             <div class="col-3">
-                <label for="sale_date">Created at</label>
+                <label for="created_at">Created at</label>
                 <input type="date" name="created_at" id="created_at" class="form-control"
                     value="{{ old('created_at') }}">
-
             </div>
 
             <div class="col-3">
-                <label for="type">Updated at</label>
+                <label for="updated_at">Updated at</label>
                 <input type="text" name="updated_at" id="updated_at" class="form-control"
                     value="{{ old('updated_at') }}">
-
             </div>
 
-
+            <div class="col-3">
+                <label for="type_id">Tipologia</label>
+                <select name="type_id" id="type_id" class="form-control">
+                    @foreach ($types as $type)
+                        <option value="{{ $type->id }}" {{ $type->id === $project->type_id ? 'selected' : '' }}>
+                            {{ $type->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
 
             <div class="col-12">
-                <label for="description">Content</label>
+                <label for="content">Content</label>
                 <textarea name="content" id="content" class="form-control @error('content') is-invalid @enderror" rows="4">{{ old('content') }}</textarea>
                 @error('content')
                     <div class="alert alert-danger mt-2">{{ $message }}</div>
@@ -73,6 +83,7 @@
                 <button type="submit" class="btn btn-primary">Inserisci Progetto</button>
             </div>
         </form>
+
 
     </div>
     </div>

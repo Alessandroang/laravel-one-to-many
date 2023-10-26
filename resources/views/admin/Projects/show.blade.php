@@ -23,6 +23,9 @@
                         <p class="card-text"><strong>Created at:</strong> {{ $project->created_at }}</p>
                         <p class="card-text"><strong>Updated at:</strong>{{ $project->updated_at }}</p>
                         <p class="card-text"><strong>Descrizione:</strong> {{ $project->content }}</p>
+                        @if ($project->type)
+                            <p class="card-text"><strong>Tipologia:</strong> {{ $project->type->name }}</p>
+                        @endif
                     </div>
                 </div>
             </div>
