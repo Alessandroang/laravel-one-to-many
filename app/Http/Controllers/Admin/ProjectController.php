@@ -47,7 +47,7 @@ class ProjectController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'slug' => 'required|string',
-            'type_id' => 'required|numeric',
+            'type_id' => 'nullable|exists:types,id',
 
         ]);
 
@@ -104,7 +104,8 @@ class ProjectController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'slug' => 'required|string',
-            'type_id' => 'required|string',
+            'type_id' => 'nullable|exists:types,id',
+
 
         ]);
 
