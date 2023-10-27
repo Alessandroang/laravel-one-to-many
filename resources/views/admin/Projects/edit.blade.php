@@ -29,7 +29,7 @@
 
             <div class="col-3">
                 <label for="thumb">Slug</label>
-                <input type="text" name "slug" id="slug" class="form-control" value="{{ $project->slug }}">
+                <input type="text" name="slug" id="slug" class="form-control" value="{{ $project->slug }}">
             </div>
 
             <div class="col-3">
@@ -49,7 +49,7 @@
                 <select name="type_id" id="type_id" class="form-control">
                     @foreach ($types as $type)
                         <option value="{{ $type->id }}" {{ $type->id === $project->type_id ? 'selected' : '' }}>
-                            {{ $type->name }}
+                            {{ $type->label }}
                         </option>
                     @endforeach
                 </select>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Type;
+use Illuminate\Support\Str;
 
 
 class ProjectController extends Controller
@@ -17,7 +18,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::paginate(12);
+        $projects = Project::orderby('id', 'desc')->paginate(12);
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -46,6 +47,8 @@ class ProjectController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'slug' => 'required|string',
+            'type_id' => 'required|numeric',
+
         ]);
 
         // Crea un nuovo progetto
@@ -101,6 +104,8 @@ class ProjectController extends Controller
             'title' => 'required|string',
             'content' => 'required|string',
             'slug' => 'required|string',
+            'type_id' => 'required|string',
+
         ]);
 
         // Aggiorna i dati del progetto con i nuovi dati

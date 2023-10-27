@@ -30,14 +30,6 @@
                 @enderror
             </div>
 
-            <div class="col-3">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror"
-                    value="{{ old('name') }}">
-                @error('name')
-                    <div class="alert alert-danger mt-2">{{ $message }}</div>
-                @enderror
-            </div>
 
             <div class="col-3">
                 <label for="slug">Slug</label>
@@ -62,10 +54,11 @@
 
             <div class="col-3">
                 <label for="type_id">Tipologia</label>
-                <select name="type_id" id="type_id" class="form-control">
+                <select name="type_id" id="type_id" class="form-select">
+                    <option value="">Seleziona una tipologia</option>
                     @foreach ($types as $type)
-                        <option value="{{ $type->id }}" {{ $type->id === $project->type_id ? 'selected' : '' }}>
-                            {{ $type->name }}
+                        <option value="{{ $type->id }}">
+                            {{ $type->label }}
                         </option>
                     @endforeach
                 </select>

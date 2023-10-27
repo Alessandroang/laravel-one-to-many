@@ -24,7 +24,7 @@
                         <p class="card-text"><strong>Updated at:</strong>{{ $project->updated_at }}</p>
                         <p class="card-text"><strong>Descrizione:</strong> {{ $project->content }}</p>
                         @if ($project->type)
-                            <p class="card-text"><strong>Tipologia:</strong> {{ $project->type->name }}</p>
+                            <p class="card-text"><strong>Tipologia:</strong>{!! $project->getTypeBadge() !!}</p>
                         @endif
                     </div>
                 </div>
